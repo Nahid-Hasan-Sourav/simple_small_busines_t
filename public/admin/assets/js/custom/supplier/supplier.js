@@ -106,3 +106,26 @@ $("#addUpdateSupplierBtn").click(function () {
     console.log("SUPPLIER DATA === : ", supplierData);
 });
 
+
+//search by supplier start here
+$("#searchSupplierByName").on('input',function(e){
+  let searchValue = $(this).val();
+
+
+  $.ajax({
+    url: "/all-supplier", 
+    method: 'GET',
+    data: {searchValue },
+    success: function(response) {
+      // console.log('Filtered suppliers:', response.allSupplier);
+      showSupplierDataTable(response.allSupplier)
+      
+    },
+    error: function(xhr, status, error) {
+      console.error('Error:', error);
+    }
+  });
+  // console.log('Search valkues are : ',searchValue);
+});
+
+//search by supplier end here

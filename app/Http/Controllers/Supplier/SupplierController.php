@@ -37,11 +37,30 @@ class SupplierController extends Controller
         ]);
     }
 
-    public function viewAllSupplier(){
-        $allSupplier = Supplier::all();
+    // public function viewAllSupplier(Request $request){
+    //     $allSupplier = Supplier::all();
+    //     if(!empty($request->searchValue)){
+    //         $allSupplier->where('name', 'like', '%' . $request->searchValuesearch . '%');
+    //     }
+    //     $allSupplier->$allSupplier->get();
 
+    //     return response()->json([
+    //         "status"       =>"success",
+    //         "allSupplier"  => $allSupplier
+    //     ]);
+    // }
+    
+    public function viewAllSupplier(Request $request){
+        $allSupplier = Supplier::query();
+        
+        if (!empty($request->searchValue)) {
+            $allSupplier->where('name', 'like', '%' . $request->searchValue . '%');
+        }
+        
+        $allSupplier = $allSupplier->get();
+    
         return response()->json([
-            "status"       =>"success",
+            "status"       => "success",
             "allSupplier"  => $allSupplier
         ]);
     }

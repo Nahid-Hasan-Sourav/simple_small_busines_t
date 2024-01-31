@@ -3,11 +3,12 @@
 @section('body')
 <div class="card pd-20 pd-sm-40 mg-t-50">
     <div class="d-flex justify-content-end pr-3 my-3">
-        <button class="btn btn-success btn-md" style="width: 15%" id="addSupplierBtn">ADD SUPPLIER</button>
+      <input type="text"  class="form-control w-25" id="searchSupplierByName" placeholder="search by supplier name">
     </div>
     <div class="card-header-title d-flex justify-content-between mb-3 pr-3">
     <h6 class="">All SUPPLIER</h6>
-    <input type="text"  class="form-control w-25" placeholder="search by supplier name">
+    <button class="btn btn-success btn-md" style="width: 15%" id="addSupplierBtn">ADD SUPPLIER</button>
+
     </div>
     <div class="table-wrapper">
       <div id="datatable2_wrapper" class="dataTables_wrapper no-footer"><table id="datatable2" class="table display responsive nowrap dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable2_info" style="width: 1546px;">
@@ -22,25 +23,7 @@
           </tr>
         </thead>
         <tbody id="supplierTableBody">   
-        {{-- <tr role="row" class="odd">
-            <td tabindex="0" class="sorting_1">1</td>
-            <td tabindex="0" class="sorting_1">Airi</td>
-            <td>Satou</td>
-            <td>Accountant</td>
-            <td>2008/11/28</td>
-            <td>
-              <button class="btn btn-sm btn-success">
-                <i class="fa-solid fa-pen-to-square"></i>
-              </button>
-              <button class="btn btn-sm btn-danger">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </td>
-           
-        </tr> --}}
-         
-          
-          
+
         </tbody>
       </table>
     </div>
