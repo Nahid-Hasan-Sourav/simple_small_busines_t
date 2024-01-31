@@ -44,7 +44,7 @@ class SupplierController extends Controller
             $allSupplier->where('name', 'like', '%' . $request->searchValue . '%');
         }
         
-        $allSupplier = $allSupplier->paginate(5); // Paginate the results
+        $allSupplier = $allSupplier->get(); // Paginate the results
         
         return response()->json([
             "status"       => "success",

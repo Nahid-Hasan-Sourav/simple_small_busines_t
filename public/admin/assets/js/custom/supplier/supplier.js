@@ -41,7 +41,7 @@ const getAllSuplier = () => {
       success: function (res) {
           if (res.status === "success") {
               console.log("All SUPPLIER = =  : ", res);
-              let data = res.allSupplier?.data;
+              let data = res.allSupplier;
               showSupplierDataTable(data);
          }
       },
@@ -152,7 +152,7 @@ $("#searchSupplierByName").on('input',function(e){
     data: {searchValue },
     success: function(response) {
       // console.log('Filtered suppliers:', response.allSupplier);
-      showSupplierDataTable(response.allSupplier?.data)
+      showSupplierDataTable(response.allSupplier)
       
     },
     error: function(xhr, status, error) {
