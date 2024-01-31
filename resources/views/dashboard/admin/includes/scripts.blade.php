@@ -17,3 +17,6 @@
 <script src="{{asset('/')}}admin/assets/js/starlight.js"></script>
 <script src="{{asset('/')}}admin/assets/js/ResizeSensor.js"></script>
 <script src="{{asset('/')}}admin/assets/js/dashboard.js"></script>
+{{-- this is for toaster start here--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{{-- this is for toaster end here--}}
