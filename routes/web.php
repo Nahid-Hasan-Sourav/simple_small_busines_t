@@ -33,7 +33,14 @@ Route::post('/supplier/update/{id}',[SupplierController::class,'updateSupplier']
 Route::get('/supplier/delete/{id}',[SupplierController::class,'deleteSupplier'])->name("delete.update");
 //supplier end here
 
+//supplier start here
 Route::get('/customer',[CustomerController::class,'index'])->name("customer.view");
+Route::post('/customer/store',[CustomerController::class,'store'])->name("customer.store");
+Route::get('/all-customer',[CustomerController::class,'viewAllCustomer'])->name("allcustomer.view");
+Route::get('/customer/edit/{id}',[CustomerController::class,'editCustomer'])->name("customer.edit");
+Route::post('/customer/update/{id}',[CustomerController::class,'updateCustomer'])->name("customer.update");
+Route::get('/customer/delete/{id}',[CustomerController::class,'deleteCustomer'])->name("customer.update");
+//supplier end here
 Route::get('/product',[ProductController::class,'index'])->name("product.view");
 Route::get('/buyproduct',[BuyProductController::class,'index'])->name("buyproduct.view");
 Route::get('/sellproduct',[SellProductController::class,'index'])->name("sellproduct.view");

@@ -3,9 +3,9 @@ import { openModal, ajaxSetup, closeModal } from "../common.js";
 
 
 //show data on table start here
-const showSupplierDataTable = (data) => {
-  const supplierTableBody = $("#supplierTableBody");
-  supplierTableBody.empty();
+const showCustomerDataTable = (data) => {
+  const customerTableBody = $("#customerTableBody");
+  customerTableBody.empty();
 
   if (data.length > 0) {
       data.forEach((item, index) => {
@@ -18,77 +18,77 @@ const showSupplierDataTable = (data) => {
                      <td>${item.address}</td>
                      <td>
                          <div class="div">
-                         <button  class="btn btn-sm btn-success editSupplier" value="${item.id}">
+                         <button  class="btn btn-sm btn-success editcustomer" value="${item.id}">
                          <i class="fa-solid fa-pen-to-square"></i>
                        </button>
-                       <button class="btn btn-sm btn-danger deleteSupplier" value="${item.id}">
+                       <button class="btn btn-sm btn-danger deletecustomer" value="${item.id}">
                        <i class="fa-solid fa-trash"></i>
                      </button>
                          </div>
                      </td>
                    </tr>`;
-        supplierTableBody.append(row);
+        customerTableBody.append(row);
       });
   } else {
-    supplierTableBody.append('<tr><td colspan="5">No data available</td></tr>');
+    customerTableBody.append('<tr><td colspan="5">No data available</td></tr>');
   }
 };
-//get all supplier data start here
-const getAllSuplier = () => {
+//get all customer data start here
+const getAllCustomer = () => {
   $.ajax({
-      url: "/all-supplier",
+      url: "/all-customer",
       type: "GET",
       success: function (res) {
           if (res.status === "success") {
-              console.log("All SUPPLIER = =  : ", res);
-              let data = res.allSupplier;
-              showSupplierDataTable(data);
+              console.log("All customer = =  : ", res);
+              let data = res.allcustomer;
+              showCustomerDataTable(data);
          }
       },
   });
 };
 
-//get all supplier data end here
+//get all customer data end here
 
-getAllSuplier();
+getAllCustomer();
 
 //show data on table end here
 
-$("#addSupplierBtn").click(function () {
-    $("#supplierForm")[0].reset();
-    openModal("#supplierAddUpdateModal");
+$("#addCustomerBtn").click(function () {
+    $("#customerForm")[0].reset();
+    openModal("#customerAddUpdateModal");
 });
 
-$("#addUpdateSupplierBtn").click(function (e) {
+$("#addUpdateCustomerBtn").click(function (e) {
   let btnInnerText = $(this).text();
-  console.log(btnInnerText);
+//   console.log(btnInnerText);
     let name = $("#name").val();
     let email = $("#email").val();
     let phoneNumber = $("#p_number").val();
     let address = $("#address").val();
 
-    const supplierData = {
+    const customerData = {
         name,
         email,
         phoneNumber,
         address,
     };
 
-    if(btnInnerText==="ADD SUPPLIER"){
+    if(btnInnerText==="ADD CUSTOMER"){
       ajaxSetup();
 
     $.ajax({
-        url: "/supplier/store",
+        url: "/customer/store",
         type: "POST",
-        data: JSON.stringify(supplierData),
+        data: JSON.stringify(customerData),
         contentType: "application/json",
         success: function (response) {
-            console.log("RESPONSE BACK AFTER SUPPLIER POST : ", response);
+            console.log("RESPONSE BACK AFTER customer POST : ", response);
             if (response.status === "success") {
                 // console.log(response);
-                closeModal("#supplierAddUpdateModal");
-                getAllSuplier()
-                toastr.success("supplier added successfully");
+                closeModal("#customerAddUpdateModal");
+                getAllCustomer();
+                toastr.success("customer added successfully");
             }
         },
         error: function (xhr, status, error) {
@@ -108,7 +108,7 @@ $("#addUpdateSupplierBtn").click(function (e) {
         },
     });
     }
-    if(btnInnerText==="UPDATE SUPPLIER"){
+    if(btnInnerText==="UPDATE CUSTOMER"){
       // let id = $(this).attr("value");
 
       let id = $(this).val();
@@ -117,17 +117,17 @@ $("#addUpdateSupplierBtn").click(function (e) {
       ajaxSetup();
 
       $.ajax({
-          url: "/supplier/update/"+id,
+          url: "/customer/update/"+id,
           type: "POST",
-          data: JSON.stringify(supplierData),
+          data: JSON.stringify(customerData),
           contentType: "application/json",
           success: function (response) {
-              console.log("RESPONSE BACK AFTER SUPPLIER POST : ", response);
+              console.log("RESPONSE BACK AFTER customer POST : ", response);
               if (response.status === "success") {
                   // console.log(response);
-                  closeModal("#supplierAddUpdateModal");
-                  getAllSuplier()
-                  toastr.success("supplier update successfully");
+                  closeModal("#customerAddUpdateModal");
+                  getAllCustomer()
+                  toastr.success("customer update successfully");
               }
           },
           error: function(xhr, status, error) {
@@ -137,22 +137,22 @@ $("#addUpdateSupplierBtn").click(function (e) {
     }
     
 
-    console.log("SUPPLIER DATA === : ", supplierData);
+    console.log("customer DATA === : ", customerData);
 });
 
 
-//search by supplier start here
-$("#searchSupplierByName").on('input',function(e){
+//search by customer start here
+$("#searchCustomerByName").on('input',function(e){
   let searchValue = $(this).val();
 
 
   $.ajax({
-    url: "/all-supplier", 
+    url: "/all-customer", 
     method: 'GET',
     data: {searchValue },
     success: function(response) {
-      // console.log('Filtered suppliers:', response.allSupplier);
-      showSupplierDataTable(response.allSupplier)
+      // console.log('Filtered customers:', response.allcustomer);
+      showCustomerDataTable(response.allcustomer)
       
     },
     error: function(xhr, status, error) {
@@ -161,22 +161,22 @@ $("#searchSupplierByName").on('input',function(e){
   });
   // console.log('Search valkues are : ',searchValue);
 });
-//search by supplier end here
+//search by customer end here
 
 
-//edit supplier start here 
-$(document).on("click", ".editSupplier", function(e) {
+//edit customer start here 
+$(document).on("click", ".editcustomer", function(e) {
   let id = $(this).val(); 
   // console.log("BTN VALUE ",btnValue);
 
-  $("#modal-title").text("Edit Supplier");
-  $("#addUpdateSupplierBtn").text("UPDATE SUPPLIER");
-  $("#addUpdateSupplierBtn").val(id);
-  openModal("#supplierAddUpdateModal");
+  $("#modal-title").text("Edit Customer");
+  $("#addUpdateCustomerBtn").text("UPDATE CUSTOMER");
+  $("#addUpdateCustomerBtn").val(id);
+  openModal("#customerAddUpdateModal");
 
 
   $.ajax({
-    url: "/supplier/edit/"+id,
+    url: "/customer/edit/"+id,
     type: "GET",
     success: function (res) {
 
@@ -192,13 +192,13 @@ $(document).on("click", ".editSupplier", function(e) {
 });
 });
 
-//edit supplier end here 
+//edit customer end here 
 
 
 
 
-//delete supplier start here 
-$(document).on("click", ".deleteSupplier", function(e) {
+//delete customer start here 
+$(document).on("click", ".deletecustomer", function(e) {
   let id = $(this).val(); 
   Swal.fire({
     title: "Are you sure?",
@@ -211,17 +211,17 @@ $(document).on("click", ".deleteSupplier", function(e) {
   }).then((result) => {
     if (result.isConfirmed) {
         $.ajax({
-            url: "/supplier/delete/"+id,
+            url: "/customer/delete/"+id,
             type: "GET",
             success: function (res) {
                 if (res.status === "success") {
 
                     Swal.fire({
                         title:"Deleted!",
-                        text: "Supplier has been deleted.",
+                        text: "customer has been deleted.",
                         icon: "success"
                       });
-                      getAllSuplier();
+                      getAllCustomer();
                 }
             },
         });
@@ -233,4 +233,4 @@ $(document).on("click", ".deleteSupplier", function(e) {
   });
 });
 
-//delete supplier end here 
+//delete customer end here 

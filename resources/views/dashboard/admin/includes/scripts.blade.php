@@ -2,6 +2,7 @@
 <script src="{{asset('/')}}admin/assets/lib/popper.js/popper.js"></script>
 {{-- custom js start here --}}
 <script type="module" src="{{asset('/')}}admin/assets/js/custom/supplier/supplier.js"></script>
+<script type="module" src="{{asset('/')}}admin/assets/js/custom/customer/customer.js"></script>
 {{-- custom js end here --}}
 <script src="{{asset('/')}}admin/assets/lib/bootstrap/bootstrap.js"></script>
 <script src="{{asset('/')}}admin/assets/lib/jquery-ui/jquery-ui.js"></script>
