@@ -3,7 +3,7 @@
   <div class="modal-dialog" role="document" style="width: 60%;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">ADD SUPPLIER</h5>
+        <h5 class="modal-title" id="modal-title">ADD SUPPLIER</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -40,7 +40,7 @@
       </form>
       <div class="modal-footer">
         <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" id="addUpdateSupplierBtn" class="btn btn-primary">ADD SUPPLIER</button>
+        <button type="submit" value="" id="addUpdateSupplierBtn" class="btn btn-primary">ADD SUPPLIER</button>
       </div>
     </div>
   </div>

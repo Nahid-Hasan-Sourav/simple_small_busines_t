@@ -37,19 +37,6 @@ class SupplierController extends Controller
         ]);
     }
 
-    // public function viewAllSupplier(Request $request){
-    //     $allSupplier = Supplier::all();
-    //     if(!empty($request->searchValue)){
-    //         $allSupplier->where('name', 'like', '%' . $request->searchValuesearch . '%');
-    //     }
-    //     $allSupplier->$allSupplier->get();
-
-    //     return response()->json([
-    //         "status"       =>"success",
-    //         "allSupplier"  => $allSupplier
-    //     ]);
-    // }
-    
     public function viewAllSupplier(Request $request){
         $allSupplier = Supplier::query();
         
@@ -57,13 +44,50 @@ class SupplierController extends Controller
             $allSupplier->where('name', 'like', '%' . $request->searchValue . '%');
         }
         
-        $allSupplier = $allSupplier->get();
-    
+        $allSupplier = $allSupplier->paginate(5); // Paginate the results
+        
         return response()->json([
             "status"       => "success",
             "allSupplier"  => $allSupplier
         ]);
     }
+
+    public function editSupplier($id){
+        $supplier = Supplier::find($id);
+
+        return response()->json([
+            "status"=>"success",
+            "data"=>$supplier
+        ]);
+    }
+
+    public function updateSupplier(Request $request,$id) {
+       
+        $supplierData = Supplier::find($id);
+        $supplierData->name        = $request->name;
+        $supplierData->email       = $request->email;
+        $supplierData->phoneNumber = $request->phoneNumber;
+        $supplierData->address     = $request->address;
+
+        $supplierData->save();
+        
+        return response()->json([
+            "status" => "success"
+        ]);
+    }
+
+    public function deleteSupplier($id){
+        $supplierData = Supplier::find($id);
+        $supplierData->delete();
+        
+        return response()->json([
+            "status" => "success"
+        ]);
+
+    }
+
+
+    
     
     
     

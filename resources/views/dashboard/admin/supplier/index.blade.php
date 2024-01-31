@@ -27,6 +27,8 @@
         </tbody>
       </table>
     </div>
+  
+  
   </div>
   @include('dashboard.admin.supplier.modal.addUpdate_modal')
 

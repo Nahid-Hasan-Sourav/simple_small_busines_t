@@ -1,6 +1,7 @@
 import { openModal, ajaxSetup, closeModal } from "../common.js";
 
 
+
 //show data on table start here
 const showSupplierDataTable = (data) => {
   const supplierTableBody = $("#supplierTableBody");
@@ -17,10 +18,10 @@ const showSupplierDataTable = (data) => {
                      <td>${item.address}</td>
                      <td>
                          <div class="div">
-                         <button class="btn btn-sm btn-success">
+                         <button  class="btn btn-sm btn-success editSupplier" value="${item.id}">
                          <i class="fa-solid fa-pen-to-square"></i>
                        </button>
-                       <button class="btn btn-sm btn-danger">
+                       <button class="btn btn-sm btn-danger deleteSupplier" value="${item.id}">
                        <i class="fa-solid fa-trash"></i>
                      </button>
                          </div>
@@ -40,12 +41,13 @@ const getAllSuplier = () => {
       success: function (res) {
           if (res.status === "success") {
               console.log("All SUPPLIER = =  : ", res);
-              let data = res.allSupplier;
+              let data = res.allSupplier?.data;
               showSupplierDataTable(data);
-          }
+         }
       },
   });
 };
+
 //get all supplier data end here
 
 getAllSuplier();
@@ -57,7 +59,9 @@ $("#addSupplierBtn").click(function () {
     openModal("#supplierAddUpdateModal");
 });
 
-$("#addUpdateSupplierBtn").click(function () {
+$("#addUpdateSupplierBtn").click(function (e) {
+  let btnInnerText = $(this).text();
+  console.log(btnInnerText);
     let name = $("#name").val();
     let email = $("#email").val();
     let phoneNumber = $("#p_number").val();
@@ -70,7 +74,8 @@ $("#addUpdateSupplierBtn").click(function () {
         address,
     };
 
-    ajaxSetup();
+    if(btnInnerText==="ADD SUPPLIER"){
+      ajaxSetup();
 
     $.ajax({
         url: "/supplier/store",
@@ -102,6 +107,35 @@ $("#addUpdateSupplierBtn").click(function () {
             }
         },
     });
+    }
+    if(btnInnerText==="UPDATE SUPPLIER"){
+      // let id = $(this).attr("value");
+
+      let id = $(this).val();
+      // console.log("UPDATE ID === : ",id);
+
+      ajaxSetup();
+
+      $.ajax({
+          url: "/supplier/update/"+id,
+          type: "POST",
+          data: JSON.stringify(supplierData),
+          contentType: "application/json",
+          success: function (response) {
+              console.log("RESPONSE BACK AFTER SUPPLIER POST : ", response);
+              if (response.status === "success") {
+                  // console.log(response);
+                  closeModal("#supplierAddUpdateModal");
+                  getAllSuplier()
+                  toastr.success("supplier update successfully");
+              }
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+          }
+      });
+    }
+    
 
     console.log("SUPPLIER DATA === : ", supplierData);
 });
@@ -118,7 +152,7 @@ $("#searchSupplierByName").on('input',function(e){
     data: {searchValue },
     success: function(response) {
       // console.log('Filtered suppliers:', response.allSupplier);
-      showSupplierDataTable(response.allSupplier)
+      showSupplierDataTable(response.allSupplier?.data)
       
     },
     error: function(xhr, status, error) {
@@ -127,5 +161,76 @@ $("#searchSupplierByName").on('input',function(e){
   });
   // console.log('Search valkues are : ',searchValue);
 });
-
 //search by supplier end here
+
+
+//edit supplier start here 
+$(document).on("click", ".editSupplier", function(e) {
+  let id = $(this).val(); 
+  // console.log("BTN VALUE ",btnValue);
+
+  $("#modal-title").text("Edit Supplier");
+  $("#addUpdateSupplierBtn").text("UPDATE SUPPLIER");
+  $("#addUpdateSupplierBtn").val(id);
+  openModal("#supplierAddUpdateModal");
+
+
+  $.ajax({
+    url: "/supplier/edit/"+id,
+    type: "GET",
+    success: function (res) {
+
+        if (res.status === "success") {
+         
+            $("#name").val(res.data.name)
+            $("#email").val(res.data.email)
+            $("#p_number").val(res.data.phoneNumber)
+            $("#address").val(res.data.address)
+            
+        }
+    },
+});
+});
+
+//edit supplier end here 
+
+
+
+
+//delete supplier start here 
+$(document).on("click", ".deleteSupplier", function(e) {
+  let id = $(this).val(); 
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+        $.ajax({
+            url: "/supplier/delete/"+id,
+            type: "GET",
+            success: function (res) {
+                if (res.status === "success") {
+
+                    Swal.fire({
+                        title:"Deleted!",
+                        text: "Supplier has been deleted.",
+                        icon: "success"
+                      });
+                      getAllSuplier();
+                }
+            },
+        });
+
+    }
+
+
+
+  });
+});
+
+//delete supplier end here 
