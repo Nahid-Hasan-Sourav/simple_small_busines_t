@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Supplier;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSupplierRequest;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -22,9 +23,26 @@ class SupplierController extends Controller
                 'message' =>   $validator->messages()->all(),
             ]);
         }
+
+        $supplierData = new Supplier();
+        $supplierData->name        = $request->name;
+        $supplierData->email       = $request->email;
+        $supplierData->phoneNumber = $request->phoneNumber;
+        $supplierData->address     = $request->address;
+
+        $supplierData->save();
         
         return response()->json([
             "status" => "success"
+        ]);
+    }
+
+    public function viewAllSupplier(){
+        $allSupplier = Supplier::all();
+
+        return response()->json([
+            "status"       =>"success",
+            "allSupplier"  => $allSupplier
         ]);
     }
     

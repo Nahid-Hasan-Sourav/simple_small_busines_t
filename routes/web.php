@@ -27,6 +27,7 @@ Route::get('/',[DashboardController::class,'index'])->name("dashboard");
 //supplier start here
 Route::get('/supplier',[SupplierController::class,'index'])->name("supplier.view");
 Route::post('/supplier/store',[SupplierController::class,'store'])->name("supplier.store");
+Route::get('/all-supplier',[SupplierController::class,'viewAllSupplier'])->name("supplier.view");
 //supplier end here
 
 Route::get('/customer',[CustomerController::class,'index'])->name("customer.view");

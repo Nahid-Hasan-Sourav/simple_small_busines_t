@@ -8,7 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <form class="modal-body" id="supplierForm">
       <div class="card pd-20 pd-sm-40 form-layout form-layout-4">
               <!-- <h6 class="card-body-title">SUPPLIER INFORMATION</h6> -->
               <div class="row">
@@ -36,8 +36,8 @@
                 </div>
               </div>
              
-            </div>
-      </div>
+        </div>
+      </form>
       <div class="modal-footer">
         <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" id="addUpdateSupplierBtn" class="btn btn-primary">ADD SUPPLIER</button>
