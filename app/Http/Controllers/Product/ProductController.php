@@ -23,8 +23,8 @@ class ProductController extends Controller
         
         $product = new Product();
         $product->name         =  $validatedData ['name'];
-        $product->quantity     =  $validatedData ['quantity'];
-        $product->unit_price   =  $validatedData ['unit_price'];
+        // $product->quantity     =  $validatedData ['quantity'];
+        // $product->unit_price   =  $validatedData ['unit_price'];
 
         $product->save();
 
@@ -43,8 +43,8 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         $product->name         =  $request->name;
-        $product->quantity     =  $request->quantity;
-        $product->unit_price   =  $request->unit_price;
+        // $product->quantity     =  $request->quantity;
+        // $product->unit_price   =  $request->unit_price;
 
         $product->save();
 

@@ -27,8 +27,9 @@
                 @enderror
                   <input type="text" class="form-control" name="name" placeholder="Enter product name">
                 </div>
-              </div><!-- row -->
-              <div class="row mg-t-20">
+              </div>
+              <!-- row -->
+              {{-- <div class="row mg-t-20">
                 <label class="col-sm-4 form-control-label">Quantity: <span class="tx-danger">*</span></label>
                 <div class="col-sm-8 mg-t-10 mg-sm-t-0">
                 @error('quantity')
@@ -45,7 +46,7 @@
                 @enderror
                   <input type="number" class="form-control" name="unit_price" placeholder="Enter unit price">
                 </div>
-              </div>
+              </div> --}}
               
               <div class="form-layout-footer mg-t-30 d-flex justify-content-end">
                 <button type="submit" class="btn btn-info mg-r-5">ADD PRODUCT</button>

@@ -53,4 +53,10 @@ Route::delete('/product/delete/{id}',[ProductController::class,'delete'])->name(
 
 
 Route::get('/buyproduct',[BuyProductController::class,'index'])->name("buyproduct.index");
+Route::get('/buyproduct/create',[BuyProductController::class,'create'])->name("buyproduct.create");
+Route::post('/buyproduct/store',[BuyProductController::class,'store'])->name("buyproduct.store");
+Route::post('/buyproduct/edit/{id}',[BuyProductController::class,'store'])->name("buyproduct.edit");
+Route::post('/buyproduct/delete/{id}',[BuyProductController::class,'store'])->name("buyproduct.delete");
+
+
 Route::get('/sellproduct',[SellProductController::class,'index'])->name("sellproduct.index");

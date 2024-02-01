@@ -15,7 +15,7 @@
                   <input type="text" class="form-control" value="{{ $product->name }}" name="name" placeholder="Enter product name">
                 </div>
               </div><!-- row -->
-              <div class="row mg-t-20">
+              {{-- <div class="row mg-t-20">
                 <label class="col-sm-4 form-control-label">Quantity: <span class="tx-danger">*</span></label>
                 <div class="col-sm-8 mg-t-10 mg-sm-t-0">
             
@@ -27,7 +27,7 @@
                 <div class="col-sm-8 mg-t-10 mg-sm-t-0">
                   <input type="number" class="form-control" value={{ $product->unit_price }} name="unit_price" placeholder="Enter unit price">
                 </div>
-              </div>
+              </div> --}}
               
               <div class="form-layout-footer mg-t-30 d-flex justify-content-end">
                 <button type="submit" class="btn btn-info mg-r-5">UPDATE PRODUCT</button>
