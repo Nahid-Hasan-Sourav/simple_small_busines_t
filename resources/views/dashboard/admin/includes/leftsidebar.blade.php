@@ -25,7 +25,7 @@
         <span class="menu-item-label">CUSTOMER</span>
       </div>
     </a>
-    
+
       <a href="{{ route('product.index') }}" class="sl-menu-link {{ request()->is('product*') ? 'active' : '' }}">
         <div class="sl-menu-item">
           <img src="{{asset('/')}}admin/assets/img/product.png" style="width:30px; height:30px; color:white;">
@@ -42,6 +42,13 @@
         <div class="sl-menu-item">
           <img src="{{asset('/')}}admin/assets/img/sell.png" style="width:30px; height:30px; color:white;">
           <span class="menu-item-label">SELL PRODUCT</span>
+        </div>
+      </a>
+
+      <a href="{{ route('report.index') }}" class="sl-menu-link {{ request()->is('report*') ? 'active' : '' }}">
+        <div class="sl-menu-item">
+          <img src="{{asset('/')}}admin/assets/img/commission.png" style="width:30px; height:30px; color:white;">
+          <span class="menu-item-label">REPORT</span>
         </div>
       </a>
 

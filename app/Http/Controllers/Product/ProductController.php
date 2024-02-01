@@ -25,7 +25,7 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request){
         $validatedData = $request->validated();
-        
+
         $product = new Product();
         $product->name         =  $validatedData ['name'];
         // $product->quantity     =  $validatedData ['quantity'];
@@ -61,5 +61,5 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('product.index')->with('message', 'Product delete successfully');
-    } 
+    }
 }

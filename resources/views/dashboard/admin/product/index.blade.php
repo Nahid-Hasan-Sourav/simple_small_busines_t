@@ -14,7 +14,7 @@
         });
     </script>
     @endif
-    
+
     <div class="card-header-title d-flex justify-content-between mb-3 pr-3">
         <h6 class="">All PRODUCT</h6>
 
@@ -47,7 +47,21 @@
                               {{ $product->stock }}
                           @endif
                       </td>
-                         <td>Working</td>                   
+                      <td>
+                        @php
+                            $sellProducts = json_decode($product->sellProduct, true);
+                        @endphp
+    
+                        @if(empty($sellProducts) || count($sellProducts) === 0)
+                            Not bought yet
+                        @else
+                            @foreach($sellProducts as $sellProduct)
+                                {{ $sellProduct['totalSellQuantity'] }}
+                            @endforeach
+                        @endif
+                    </td>
+
+
 
                         <td>
                             <div class="div">

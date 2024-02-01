@@ -4,6 +4,7 @@ use App\Http\Controllers\BuyProduct\BuyProductController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\Report\ReportController;
 use App\Http\Controllers\SellProduct\SellProductController;
 use App\Http\Controllers\Supplier\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -67,3 +68,5 @@ Route::post('/sellproduct/store',[SellProductController::class,'store'])->name("
 Route::get('/sellproduct/edit/{id}',[SellProductController::class,'edit'])->name("sellproduct.edit");
 Route::post('/sellproduct/update/{id}',[SellProductController::class,'update'])->name("sellproduct.update");
 Route::delete('/sellproduct/delete/{id}',[SellProductController::class,'delete'])->name("sellproduct.delete");
+
+Route::get('/report',[ReportController::class,'index'])->name("report.index");
