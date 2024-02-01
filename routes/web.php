@@ -57,7 +57,13 @@ Route::get('/buyproduct/create',[BuyProductController::class,'create'])->name("b
 Route::post('/buyproduct/store',[BuyProductController::class,'store'])->name("buyproduct.store");
 Route::get('/buyproduct/edit/{id}',[BuyProductController::class,'edit'])->name("buyproduct.edit");
 Route::post('/buyproduct/update/{id}',[BuyProductController::class,'update'])->name("buyproduct.update");
-Route::delete('/buyproduct/delete/{id}',[BuyProductController::class,'store'])->name("buyproduct.delete");
+Route::delete('/buyproduct/delete/{id}',[BuyProductController::class,'delete'])->name("buyproduct.delete");
 
 
 Route::get('/sellproduct',[SellProductController::class,'index'])->name("sellproduct.index");
+Route::get('/sellproduct/create',[SellProductController::class,'create'])->name("sellproduct.create");
+Route::get('/sellproduct/select/{id}',[SellProductController::class,'selectProduct'])->name("selectproduct.select");
+Route::post('/sellproduct/store',[SellProductController::class,'store'])->name("sellproduct.store");
+Route::get('/sellproduct/edit/{id}',[SellProductController::class,'edit'])->name("sellproduct.edit");
+Route::post('/sellproduct/update/{id}',[SellProductController::class,'update'])->name("sellproduct.update");
+Route::delete('/sellproduct/delete/{id}',[SellProductController::class,'delete'])->name("sellproduct.delete");

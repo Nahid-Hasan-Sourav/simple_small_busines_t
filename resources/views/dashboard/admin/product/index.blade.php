@@ -29,7 +29,8 @@
                         </th>
                         <th class="wd-15p sorting_asc" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" style="width: 208px;" aria-sort="ascending" aria-label="First name: activate to sort column descending">
                             Name</th>
-                        <th class="wd-15p sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" style="width: 208px;" aria-label="Last name: activate to sort column ascending">Quantity</th>
+                        <th class="wd-15p sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" style="width: 208px;" aria-label="Last name: activate to sort column ascending">Stock</th>
+                        <th class="wd-15p sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" style="width: 208px;" aria-label="Last name: activate to sort column ascending">Sell Qty</th>
                         {{-- <th class="wd-20p sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" style="width: 285px;" aria-label="Position: activate to sort column ascending">Unit Price</th> --}}
                         <th class="wd-15p sorting" tabindex="0" aria-controls="datatable2" rowspan="1" colspan="1" style="width: 208px;" aria-label="Start date: activate to sort column ascending">Action</th>
                     </tr>
@@ -40,13 +41,13 @@
                         <td tabindex="0" class="sorting_1">{{ $loop->iteration }}</td>
                         <td>{{ $product->name }}</td>
                         <td>
-                          @if($product->quantity == 0)
+                          @if($product->stock == 0)
                               Not bought yet
                           @else
-                              {{ $product->quantity }}
+                              {{ $product->stock }}
                           @endif
                       </td>
-                                            
+                         <td>Working</td>                   
 
                         <td>
                             <div class="div">
