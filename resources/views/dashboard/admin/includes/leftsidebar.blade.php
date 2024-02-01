@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="sl-sideleft-menu">
+  <div class="sl-sideleft-menu mt-4">
     <a href="{{ route('supplier.view') }}" class="sl-menu-link  {{ request()->is('supplier*') ? 'active' : '' }}">
       <div class="sl-menu-item">
         <img src="{{asset('/')}}admin/assets/img/delivery-box.png" style="width:30px; height:30px; color:white;">
