@@ -11,11 +11,24 @@ use Illuminate\Http\Request;
 
 class BuyProductController extends Controller
 {
-    public function index(){
-        $buyProducts = BuyProduct::with(['supplier','product'])->get();
-        return view('dashboard.admin.buyproduct.index',compact('buyProducts'));
+    public function index(Request $request)
+    {
+        $suppliers = Supplier::all();
+        $buyProducts = BuyProduct::with(['supplier', 'product']);
+    
+        if (!empty($request->supplier_id)) {
+            $buyProducts->where('supplier_id', $request->supplier_id);
+        }
+    
+        if (!empty($request->month)) {
+            $buyProducts->whereMonth('updated_at', $request->month);
+        }
+    
+        $buyProducts = $buyProducts->get();
+    
+        return view('dashboard.admin.buyproduct.index', compact('buyProducts', 'suppliers'));
     }
-
+    
     public function create(){
         $products  = Product::all();
         $suppliers = Supplier::all();
@@ -41,6 +54,33 @@ class BuyProductController extends Controller
 
 
         return redirect()->route('buyproduct.index')->with('message', 'Product buy successfully');
+
+    }
+
+    public function edit($id){
+        $products  = Product::all();
+        $suppliers = Supplier::all();
+
+        $buyProduct = BuyProduct::find($id);
+
+        return view('dashboard.admin.buyproduct.edit',compact('buyProduct','products','suppliers'));
+    }
+
+    public function update(Request $request,$id){
+        $buyProduct = BuyProduct::find($id);
+
+        $buyProduct->product_id   = $request->product_id;
+        $buyProduct->supplier_id  = $request->supplier_id;
+        $buyProduct->quantity     = $request->quantity;
+        $buyProduct->unitPrice    = $request->unit_price;
+        $buyProduct->totalPrice   = $request->unit_price * $request->quantity;
+        $buyProduct->save();
+
+        $product = Product::find($request->product_id);
+        $product->quantity = $request->quantity;
+        $product->save();
+
+        return redirect()->route('buyproduct.index')->with('message', 'Buy Product update successfully');
 
     }
 }

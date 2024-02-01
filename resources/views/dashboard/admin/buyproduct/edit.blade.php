@@ -5,9 +5,8 @@
   <div class="row row-sm mg-t-20 justify-content-center">
     <div class="col-xl-6">
       <div class="card pd-20 pd-sm-40 form-layout form-layout-4">
-        <h6 class="card-body-title">BUY PRODUCT</h6>
-        {{-- <p class="mg-b-20 mg-sm-b-30">A basic form where labels are aligned in left.</p> --}}
-        <form action="{{ route('buyproduct.store') }}" method="POST">
+        <h6 class="card-body-title">EDIT BUY PRODUCT</h6>
+        <form action="{{ route('buyproduct.update',['id'=>$buyProduct->id]) }}" method="POST">
             @csrf
         
             <div class="row mg-t-20">
@@ -19,7 +18,7 @@
                 <select class="form-control" name="supplier_id" id="supplier_id">
                     <option value="" disabled selected> -- Select Supplier --</option>
                     @foreach ($products as $product)
-                        <option value="{{ $product->id }}" >{{ $product->name }}</option>
+                        <option {{ $product->id==$buyProduct->product_id ? 'selected' :'' }} value="{{ $product->id }}" >{{ $product->name }}</option>
                     @endforeach
                   </select>             
                 </div>
@@ -34,7 +33,7 @@
                 <select class="form-control" name="product_id" id="product_id">
                     <option value="" disabled selected> -- Select Product --</option>
                     @foreach ($suppliers as $supplier)
-                        <option value="{{ $supplier->id }}" >{{ $supplier->name }}</option>
+                        <option {{ $supplier->id == $buyProduct->supplier_id ? 'selected' :'' }} value="{{ $supplier->id }}" >{{ $supplier->name }}</option>
                     @endforeach
                   </select>             
                 </div>
@@ -46,7 +45,7 @@
                 @error('unit_price')
                     <small class="bg-danger text-white my-2">{{ $message }}</small>
                 @enderror
-                  <input type="number" class="form-control" name="unit_price" placeholder="Enter unit price">
+                  <input type="number" class="form-control" value="{{ $buyProduct->unitPrice }}" name="unit_price" placeholder="Enter unit price">
                 </div>
               </div>
 
@@ -57,13 +56,12 @@
                 @error('quantity')
                     <small class="bg-danger text-white my-2">{{ $message }}</small>
                 @enderror
-                  <input type="number" class="form-control" name="quantity" placeholder="Enter quantity">
+                  <input type="number" class="form-control" value="{{ $buyProduct->quantity }}" name="quantity" placeholder="Enter quantity">
                 </div>
               </div>
               
               <div class="form-layout-footer mg-t-30 d-flex justify-content-end">
-                <button type="submit" class="btn btn-info mg-r-5">BUY PRODUCT</button>
-                {{-- <button class="btn btn-secondary">Cancel</button> --}}
+                <button type="submit" class="btn btn-info mg-r-5">UPDATE PRODUCT</button>
               </div>
         </form>
        

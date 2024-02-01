@@ -18,10 +18,11 @@
                 @enderror
                 <select class="form-control" name="supplier_id" id="supplier_id">
                     <option value="" disabled selected> -- Select Supplier --</option>
-                    @foreach ($products as $product)
-                        <option value="{{ $product->id }}" >{{ $product->name }}</option>
+                  
+                    @foreach ($suppliers as $supplier)
+                        <option value="{{ $supplier->id }}" >{{ $supplier->name }}</option>
                     @endforeach
-                  </select>             
+                </select>             
                 </div>
               </div>
 
@@ -33,8 +34,8 @@
                 @enderror
                 <select class="form-control" name="product_id" id="product_id">
                     <option value="" disabled selected> -- Select Product --</option>
-                    @foreach ($suppliers as $supplier)
-                        <option value="{{ $supplier->id }}" >{{ $supplier->name }}</option>
+                    @foreach ($products as $product)
+                    <option value="{{ $product->id }}" >{{ $product->name }}</option>
                     @endforeach
                   </select>             
                 </div>
