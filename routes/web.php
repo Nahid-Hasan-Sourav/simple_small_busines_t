@@ -41,6 +41,16 @@ Route::get('/customer/edit/{id}',[CustomerController::class,'editCustomer'])->na
 Route::post('/customer/update/{id}',[CustomerController::class,'updateCustomer'])->name("customer.update");
 Route::get('/customer/delete/{id}',[CustomerController::class,'deleteCustomer'])->name("customer.update");
 //supplier end here
-Route::get('/product',[ProductController::class,'index'])->name("product.view");
-Route::get('/buyproduct',[BuyProductController::class,'index'])->name("buyproduct.view");
-Route::get('/sellproduct',[SellProductController::class,'index'])->name("sellproduct.view");
+
+//product start here
+Route::get('/product',[ProductController::class,'index'])->name("product.index");
+Route::get('/product/create',[ProductController::class,'create'])->name("product.create");
+Route::post('/product/store',[ProductController::class,'store'])->name("product.store");
+Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name("product.edit");
+Route::post('/product/update/{id}',[ProductController::class,'update'])->name("product.update");
+Route::delete('/product/delete/{id}',[ProductController::class,'delete'])->name("product.delete");
+//product end here
+
+
+Route::get('/buyproduct',[BuyProductController::class,'index'])->name("buyproduct.index");
+Route::get('/sellproduct',[SellProductController::class,'index'])->name("sellproduct.index");

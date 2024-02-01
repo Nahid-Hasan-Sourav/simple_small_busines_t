@@ -26,19 +26,19 @@
       </div>
     </a>
     
-      <a href="{{ route('product.view') }}" class="sl-menu-link {{ request()->is('product*') ? 'active' : '' }}">
+      <a href="{{ route('product.index') }}" class="sl-menu-link {{ request()->is('product*') ? 'active' : '' }}">
         <div class="sl-menu-item">
           <img src="{{asset('/')}}admin/assets/img/product.png" style="width:30px; height:30px; color:white;">
           <span class="menu-item-label">PRODUCT</span>
         </div>
       </a>
-      <a href="{{ route('buyproduct.view') }}" class="sl-menu-link {{ request()->is('buyproduct*') ? 'active' : '' }}">
+      <a href="{{ route('buyproduct.index') }}" class="sl-menu-link {{ request()->is('buyproduct*') ? 'active' : '' }}">
         <div class="sl-menu-item">
           <img src="{{asset('/')}}admin/assets/img/buy.png" style="width:30px; height:30px; color:white;">
           <span class="menu-item-label">BUY PRODUCT</span>
         </div>
       </a>
-      <a href="{{ route('sellproduct.view') }}" class="sl-menu-link {{ request()->is('sellproduct*') ? 'active' : '' }}">
+      <a href="{{ route('sellproduct.index') }}" class="sl-menu-link {{ request()->is('sellproduct*') ? 'active' : '' }}">
         <div class="sl-menu-item">
           <img src="{{asset('/')}}admin/assets/img/sell.png" style="width:30px; height:30px; color:white;">
           <span class="menu-item-label">SELL PRODUCT</span>
