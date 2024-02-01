@@ -6,11 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::all();
+        $products = Product::with(['sellProduct' => function($query) {
+            $query->select('product_id', DB::raw('SUM(quantity) as totalSellQuantity'))
+                ->groupBy('product_id');
+        }])->get();
+        // dd($products );
         return view('dashboard.admin.product.index',compact('products'));
     }
 
