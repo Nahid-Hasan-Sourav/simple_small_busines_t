@@ -78,5 +78,11 @@ Route::get('/friends/create',[FriendsController::class,'create'])->name("friends
 Route::post('/friends/store',[FriendsController::class,'store'])->name("friends.store");
 Route::get('/friends/edit/{id}',[FriendsController::class,'edit'])->name("friends.edit");
 Route::post('/friends/update/{id}',[FriendsController::class,'update'])->name("friends.update");
-
 Route::delete('/friends/delete/{id}',[FriendsController::class,'delete'])->name("friends.delete");
+
+Route::get('/lends',[LendsMoneyController::class,'index'])->name("lends.index");
+Route::post('/lends/money/store',[LendsMoneyController::class,'store'])->name("lends.store");
+Route::get('/all-lendsMoney',[LendsMoneyController::class,'viewAllLendsMoney'])->name("lends.view.all");
+Route::post('/lends/money/receive',[LendsMoneyController::class,'receiveMoney'])->name("lends.receiveMoney");
+
+

@@ -59,6 +59,12 @@
         </div>
       </a>
 
+      <a href="{{ route('lends.index') }}" class="sl-menu-link {{ request()->is('lends*') ? 'active' : '' }}">
+        <div class="sl-menu-item">
+          <img src="{{asset('/')}}admin/assets/img/report.png" style="width:30px; height:30px; color:white;">
+          <span class="menu-item-label">LENDS</span>
+        </div>
+      </a>
 
   </div>
 

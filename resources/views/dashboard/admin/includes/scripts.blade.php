@@ -3,6 +3,7 @@
 {{-- custom js start here --}}
 <script type="module" src="{{asset('/')}}admin/assets/js/custom/supplier/supplier.js"></script>
 <script type="module" src="{{asset('/')}}admin/assets/js/custom/customer/customer.js"></script>
+<script type="module" src="{{asset('/')}}admin/assets/js/custom/lends/lends.js"></script>
 <script  src="{{asset('/')}}admin/assets/js/custom/sellProduct/sellProduct.js"></script>
 {{-- custom js end here --}}
 <script src="{{asset('/')}}admin/assets/lib/bootstrap/bootstrap.js"></script>
