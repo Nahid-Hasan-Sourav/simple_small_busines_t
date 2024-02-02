@@ -38,7 +38,7 @@
           </div><!-- card-header -->
           <div class="d-flex align-items-center justify-content-between">
             <span class="sparkline2"><canvas width="59" height="50" style="display: inline-block; width: 59px; height: 50px; vertical-align: top;"></canvas></span>
-            <h3 class="mg-b-0 tx-white tx-lato tx-bold">$11,908</h3>
+            <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ $totalLendsMoney }} TK</h3>
           </div><!-- card-body -->
           <!-- -->
         </div><!-- card -->
@@ -51,7 +51,7 @@
           </div><!-- card-header -->
           <div class="d-flex align-items-center justify-content-between">
             <span class="sparkline2"><canvas width="59" height="50" style="display: inline-block; width: 59px; height: 50px; vertical-align: top;"></canvas></span>
-            <h3 class="mg-b-0 tx-white tx-lato tx-bold">$91,239</h3>
+            <h3 class="mg-b-0 tx-white tx-lato tx-bold">{{ $totalReceivedMoney }} TK</h3>
           </div><!-- card-body -->
           <!-- -->
         </div><!-- card -->

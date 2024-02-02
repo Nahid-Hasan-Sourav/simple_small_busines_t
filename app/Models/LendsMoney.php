@@ -13,4 +13,8 @@ class LendsMoney extends Model
     public function friend(){
         return $this->belongsTo(Friend::class,'friend_id','id');
     }
+
+    public function receivedMoney(){
+        return $this->hasMany(ReceiveMoney::class,'lends_money_id','id');
+    }
 }

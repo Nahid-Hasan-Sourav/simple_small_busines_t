@@ -9,15 +9,39 @@ const showLendsMoneyDataTable = (data) => {
  console.log("ALL DATA MONEY == ",data)
   if (data?.length > 0) {
       data.forEach((item, index) => {
-          console.log("all money",item);
+          console.log("all Lends Amount ",item.amount);
+          console.log("all Recaived Amount ",item?.received_money[0]?.amount);
+
+          let paymentStatus = "PENDING";
+
+          let dueAmount='';
+          let dueAmountText = ""
+          if (item.received_money.length > 0) {
+              if (item.amount === item?.received_money[0]?.amount) {
+                  paymentStatus = "PAID";
+                  console.log("This is from : ");
+              }
+              else{
+                paymentStatus="PARTIAL RECEIVED"
+                dueAmountText = "Due Amount = "
+
+              }
+          }
+          if(paymentStatus==="PARTIAL RECEIVED"){
+            dueAmount=item.amount - item?.received_money[0]?.amount
+          }
           const row = `<tr>
                      <th scope="row">${index + 1}</th>
                      <td>${item.friend.name}</td>
                      <td>${item.amount}</td>
                      <td>${item.date}</td>
-                     <td>PENDING</td>
+                     <td>
+                     ${paymentStatus}<br>
+                     ${dueAmountText} ${dueAmount}
+                     </td>
                     <td>
-                    <button class="recaiveMoney btn btn-md btn-success " value="${item.id}">
+                    <button ${paymentStatus === "PAID" ? 'disabled' : ''}
+                     class="recaiveMoney btn btn-md btn-success " value="${item.id}">
                     RECEIVE
                     </button>
                     </td>
@@ -35,8 +59,11 @@ const getAllLendsMoneyInfo = () => {
       type: "GET",
       success: function (res) {
           if (res.status === "success") {
-              console.log("All customer = =  : ", res);
+              console.log("All lendsMoney = =  : ", res);
               let data = res.data;
+              $("#totalLendsMoney").text( res.totalLendsMoney);
+              $("#totallReceivedMoney").text( res.totalReceivedMoney);
+
               showLendsMoneyDataTable(data);
          }
       },
@@ -101,25 +128,25 @@ $("#addUpdateSendMoneyBtn").click(function (e) {
 
 
 //search by customer start here
-$("#searchCustomerByName").on('input',function(e){
-  let searchValue = $(this).val();
-
-
-  $.ajax({
-    url: "/all-customer",
+$("#selectMonth").change(function(){
+    let id = $(this).val()
+      $.ajax({
+    url: "/all-lendsMoney",
     method: 'GET',
-    data: {searchValue },
+    data: {id },
     success: function(response) {
-      // console.log('Filtered customers:', response.allcustomer);
-      showCustomerDataTable(response.allcustomer)
+      console.log('Filtered lends money:', response);
+      $("#totalLendsMoney").text( response.totalLendsMoney);
+      $("#totallReceivedMoney").text( response.totalReceivedMoney);
+      showLendsMoneyDataTable(response.data)
 
     },
     error: function(xhr, status, error) {
       console.error('Error:', error);
     }
   });
-  // console.log('Search valkues are : ',searchValue);
-});
+})
+
 //search by customer end here
 
 
