@@ -3,6 +3,8 @@
 use App\Http\Controllers\BuyProduct\BuyProductController;
 use App\Http\Controllers\Customer\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Friends\FriendsController;
+use App\Http\Controllers\Lends\LendsMoneyController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Report\ReportController;
 use App\Http\Controllers\SellProduct\SellProductController;
@@ -70,3 +72,11 @@ Route::post('/sellproduct/update/{id}',[SellProductController::class,'update'])-
 Route::delete('/sellproduct/delete/{id}',[SellProductController::class,'delete'])->name("sellproduct.delete");
 
 Route::get('/report',[ReportController::class,'index'])->name("report.index");
+
+Route::get('/friends',[FriendsController::class,'index'])->name("friends.index");
+Route::get('/friends/create',[FriendsController::class,'create'])->name("friends.create");
+Route::post('/friends/store',[FriendsController::class,'store'])->name("friends.store");
+Route::get('/friends/edit/{id}',[FriendsController::class,'edit'])->name("friends.edit");
+Route::post('/friends/update/{id}',[FriendsController::class,'update'])->name("friends.update");
+
+Route::delete('/friends/delete/{id}',[FriendsController::class,'delete'])->name("friends.delete");

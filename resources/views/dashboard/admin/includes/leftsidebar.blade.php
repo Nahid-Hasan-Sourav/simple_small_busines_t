@@ -47,8 +47,15 @@
 
       <a href="{{ route('report.index') }}" class="sl-menu-link {{ request()->is('report*') ? 'active' : '' }}">
         <div class="sl-menu-item">
-          <img src="{{asset('/')}}admin/assets/img/commission.png" style="width:30px; height:30px; color:white;">
+          <img src="{{asset('/')}}admin/assets/img/report.png" style="width:30px; height:30px; color:white;">
           <span class="menu-item-label">REPORT</span>
+        </div>
+      </a>
+
+      <a href="{{ route('friends.index') }}" class="sl-menu-link {{ request()->is('friends*') ? 'active' : '' }}">
+        <div class="sl-menu-item">
+          <img src="{{asset('/')}}admin/assets/img/report.png" style="width:30px; height:30px; color:white;">
+          <span class="menu-item-label">ADD FRIENDS</span>
         </div>
       </a>
 
