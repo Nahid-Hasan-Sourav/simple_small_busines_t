@@ -1,0 +1,65 @@
+{
+    "version": 2,
+    "functions": {
+      "api/index.php": {
+        "runtime": "vercel-php@0.6.1"      }
+    },
+    "routes": [
+        {
+            "src": "admin/assets/lib/jquery/(.*)",
+            "dest": "admin/assets/lib//jquery/$1"
+        },
+        {
+            "src": "admin/assets/lib/bootstarp/(.*)",
+            "dest": "admin/assets/lib//bootstarp/$1"
+        },
+        {
+            "src": "admin/assets/lib/jquery-ui/(.*)",
+            "dest": "admin/assets/lib//jquery-ui/$1"
+        },
+        {
+            "src": "admin/assets/lib/perfect-scrollbar/js/(.*)",
+            "dest": "admin/assets/lib/perfect-scrollbar/js/$1"
+        },
+        {
+            "src": "admin/assets/lib/(.*?)(?:/(.*))?",
+            "dest": "admin/assets/lib/$1/$2"
+        },    
+        {
+            "src": "admin/assets/js/custom/(.*)",
+            "dest": "admin/assets/js/custom/$1"
+        },
+        {
+          "src": "/admin/assets/css/(.*)",
+          "dest": "/admin/assets/css/$1"
+        },
+        {
+          "src": "/admin/assets/js/(.*)",
+          "dest": "/admin/assets/js/$1"
+        },
+        {
+          "src": "/admin/assets/img/(.*)",
+          "dest": "/admin/assets/img/$1"
+        },
+        {
+          "src": "/(.*)",
+          "dest": "/api/index.php"
+        }
+      ],
+
+
+    "env": {
+      "APP_ENV": "production",
+      "APP_DEBUG": "true",
+      "APP_URL": "https://simple-small-busines-t.vercel.app/",
+      "APP_CONFIG_CACHE": "/tmp/config.php",
+      "APP_EVENTS_CACHE": "/tmp/events.php",
+      "APP_PACKAGES_CACHE": "/tmp/packages.php",
+      "APP_ROUTES_CACHE": "/tmp/routes.php",
+      "APP_SERVICES_CACHE": "/tmp/services.php",
+      "VIEW_COMPILED_PATH": "/tmp",
+      "CACHE_DRIVER": "array",
+      "LOG_CHANNEL": "stderr",
+      "SESSION_DRIVER": "cookie"
+    }
+  }
